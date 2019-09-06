@@ -80,9 +80,9 @@ int main(){
 				break;
 			}
 			case 3: {
-				cout<<"Run #"<<counter<<": Wrong Answer"<<endl;
-				break;
-			}
-		}
-	}while(n!=0);
+			cout<<"Run #"<<counter<<": Wrong Answer"<<endl;
+			break;
+  			}
+ 		}
+ 	}while(n!=0);
 }
