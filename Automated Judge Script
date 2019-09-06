@@ -1,0 +1,88 @@
+#include <iostream>
+using namespace std;
+	char Judge[101][125];
+	char Team[101][125];
+	char NumbJ[12625], NumbT[12625];
+	char var;
+	int flag;
+	int counter;
+	int Jcounter;
+	int Tcounter;
+	int n;
+	int m;
+int main(){
+	do{
+		counter++;
+		cin>>n;
+		cin.get();
+		Jcounter = 0;
+		Tcounter = 0;
+		if(n == 0) break;
+		for(int i=0; i<n; i++){
+			for(int j=0; j<120; j++){
+				var = cin.get();
+				if(var >= '0' && var <= '9'){
+					NumbJ[Jcounter] = var;
+					Jcounter++;
+				}
+				Judge[i][j] = var;
+				if(var == '\n'){
+					break;
+				}
+			}
+		}
+		cin>>m;
+		cin.get();
+		for(int i=0; i<m; i++){
+			for(int j=0; j<120; j++){
+				var = cin.get();
+				if(var >= '0' && var <= '9'){
+					NumbT[Tcounter] = var;
+					Tcounter++;
+				}
+				Team[i][j] = var;
+				if(var == '\n'){
+					break;
+				}
+			}
+		}
+		if (n == m) flag = 1; 
+		else flag = 0;
+		for(int i=0; i<n; i++){
+			if(Jcounter != Tcounter) flag = 3;
+			if(flag == 2 || flag == 3) break;
+			for(int j=0; Judge[i][j] != '\n'; j++){
+				if(flag == 2 || flag == 3) break;
+				if(Judge[i][j] == Team[i][j]){
+					if (n == m) flag = 1;
+				}
+				if(Judge[i][j] != Team[i][j]){
+					flag = 2;
+					for(int x=0; x<Jcounter; x++){
+						if(NumbJ[x] == NumbT[x]){
+							flag = 2;
+						}
+						else if(NumbJ[x] != NumbT[x]){
+							flag = 3;
+							break;
+						}
+					}
+				}
+			}
+		}
+		switch(flag){
+			case 1: {
+				cout<<"Run #"<<counter<<": Accepted"<<endl;
+				break;
+			}
+			case 2: {
+				cout<<"Run #"<<counter<<": Presentation Error"<<endl;
+				break;
+			}
+			case 3: {
+				cout<<"Run #"<<counter<<": Wrong Answer"<<endl;
+				break;
+			}
+		}
+	}while(n!=0);
+}
